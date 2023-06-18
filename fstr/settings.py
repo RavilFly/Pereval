@@ -90,8 +90,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.getenv("FSTR_DB_NAME"),
-        'USER': os.getenv("FSTR_DB_USER"),
-        'PASSWORD': os.getenv("FSTR_DB_PSW"),
+        'USER': os.getenv("FSTR_DB_LOGIN"),
+        'PASSWORD': os.getenv("FSTR_DB_PASS"),
         'HOST': os.getenv("FSTR_DB_HOST"),
         'PORT': os.getenv("FSTR_DB_PORT"),
     }
