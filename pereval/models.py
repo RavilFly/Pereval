@@ -9,6 +9,9 @@ class Coords(models.Model):
     class Meta:
         db_table = 'coords'
 
+    def __str__(self):
+        return f'Latitude: {self.latitude}, longitude: {self.longitude}, height: {self.height}'
+
 class PerevalAdded(models.Model):
     STATUS_CHOICE = [
         ('new', 'Новый'),
