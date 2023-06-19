@@ -29,7 +29,7 @@ class PerevalAdded(models.Model):
     spring = models.CharField(max_length=5, default='')
     summer = models.CharField(max_length=5, default='')
     autumn = models.CharField(max_length=5, default='')
-    coords = models.ForeignKey('Coords', on_delete=models.CASCADE)
+    coords = models.ForeignKey('Coords', on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
         db_table = 'pereval_added'
