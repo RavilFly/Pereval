@@ -25,5 +25,11 @@ class SubmitData(generics. ListCreateAPIView):
                     'message': 'Ошибка в запросе, провеверьте поля.',
                     'id': None,
                 })
-        else:
+        elif status.HTTP_500_INTERNAL_SERVER_ERROR:
+            return Response({
+                'status': 500,
+                'message': 'Ошибка при выполнении операции.',
+                'id': None,
+            })
+        else: #на всякий, если еще какие-то статусы вылезут
             return self.create(request, *args, **kwargs)

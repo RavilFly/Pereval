@@ -1,6 +1,4 @@
 from rest_framework import serializers
-from rest_framework.response import Response
-
 from .models import PerevalAdded, Coords, Images, Users
 
 class UsersSerializer(serializers.ModelSerializer):
@@ -22,31 +20,30 @@ class CoordsSerializer(serializers.ModelSerializer):
 
 
 
+
+
 class PerevalAddedSerializer(serializers.ModelSerializer):
     coords = CoordsSerializer()
     images = ImagesSerializer(many=True)
     user = UsersSerializer()
 
+
     class Meta:
         model = PerevalAdded
         fields = ('id', 'status', 'beauty_title', 'title',\
-        'other_titles', 'connect', 'user', 'coords',\
-        'images', 'winter', 'spring', 'summer', 'autumn')
+                  'other_titles', 'connect', 'user', 'coords', \
+                  'images', 'winter', 'spring', 'summer', 'autumn')
 
 
     def create(self, validated_data):
         user_data = validated_data.pop('user')
         email = user_data.get('email')
 
+        #Пока таким способом обеспечиваем уникальность email
         try:
             user = Users.objects.get(email=email)
         except Users.DoesNotExist:
             user = Users.objects.create(**user_data)
-        # else:
-        #     if user.name != user_data.get('name'):
-        #         print("Email used")
-        # finally:
-        #     return Response({'email': 'This Email is used'})
 
 
 
@@ -54,11 +51,19 @@ class PerevalAddedSerializer(serializers.ModelSerializer):
         coord_ = Coords.objects.create(**coord_data) #и сохраняем в базе
         images = validated_data.pop('images')
 
-        pereval_added = PerevalAdded.objects.create(coords=coord_, user=user, **validated_data)
+        pereval_added = PerevalAdded.objects.create(
+            coords=coord_,
+            user=user,
+            **validated_data
+        )
 
         for image in images: #извлекаем ссылки на картинки и сохраняем в бд
             img_ = image.pop('img')
             title_ = image.pop('title')
-            Images.objects.create(pereval=pereval_added, img=img_, title=title_)
+            Images.objects.create(
+                pereval=pereval_added,
+                img=img_,
+                title=title_
+            )
 
         return pereval_added
