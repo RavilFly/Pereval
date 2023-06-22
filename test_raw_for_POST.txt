@@ -1,0 +1,32 @@
+    {
+        "status": "new",
+        "beauty_title": "пер.",
+        "title": "Пхия1",
+        "other_titles": "Триев1",
+        "connect": "Куда то там примыкает",
+        "user": {
+            "name": "testuser1",
+            "email": "test1@testmail.com",
+            "phone": "+79995556611"
+        },
+        "coords": {
+            "latitude": 42.1012,
+            "longitude": 5.6056,
+            "height": 1450
+        },
+        "images": [
+            {
+                "title": "Гора1",
+                "img": "https://disk.yandex.ru/i/eOV_srOt3ZPh7Q"
+            },
+            {
+                "title": "Гора2",
+                "img": "https://disk.yandex.ru/i/BguE9dDGKUB1Jw"
+            }
+        ],
+        "winter": "1A",
+        "spring": "2B",
+        "summer": "3A",
+        "autumn": "2A"
+    }
+
