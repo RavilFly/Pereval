@@ -16,12 +16,12 @@ class SubmitData(generics. ListCreateAPIView):
             serializer.save()
             return Response({
                 'status': 200,
-                'message': None,
+                'message': 'Отправлено успещно',
                 'id': serializer.data['id'],
             })
         elif status.HTTP_400_BAD_REQUEST:
             return Response({
-                    'status': status.HTTP_400_BAD_REQUEST,
+                    'status': 400,
                     'message': 'Ошибка в запросе, провеверьте поля.',
                     'id': None,
                 })
@@ -31,5 +31,11 @@ class SubmitData(generics. ListCreateAPIView):
                 'message': 'Ошибка при выполнении операции.',
                 'id': None,
             })
-        else: #на всякий, если еще какие-то статусы вылезут
+        else:
             return self.create(request, *args, **kwargs)
+
+class UpdateSubmitData(generics.RetrieveUpdateAPIView):
+    queryset = PerevalAdded.objects.all()
+    serializer_class = PerevalAddedSerializer
+
+
