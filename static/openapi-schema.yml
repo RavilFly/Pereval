@@ -1,0 +1,357 @@
+openapi: 3.0.2
+info:
+  title: 'Pereval API'
+  version: '1.0'
+paths:
+  /api/v1/submitdata/:
+    get:
+      operationId: listPerevalAddeds
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PerevalAdded'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createPerevalAdded
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PerevalAdded'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PerevalAdded'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PerevalAdded'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerevalAdded'
+          description: ''
+      tags:
+      - api
+  /api/v1/submitdata/{id}/:
+    get:
+      operationId: retrievePerevalAdded
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this pereval added.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerevalAdded'
+          description: ''
+      tags:
+      - api
+#    put:
+#      operationId: updatePerevalAdded
+#      description: ''
+#      parameters:
+#      - name: id
+#        in: path
+#        required: true
+#        description: A unique integer value identifying this pereval added.
+#        schema:
+#          type: string
+#      requestBody:
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/PerevalAdded'
+#          application/x-www-form-urlencoded:
+#            schema:
+#              $ref: '#/components/schemas/PerevalAdded'
+#          multipart/form-data:
+#            schema:
+#              $ref: '#/components/schemas/PerevalAdded'
+#      responses:
+#        '200':
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/PerevalAdded'
+#          description: ''
+#      tags:
+#      - api
+    patch:
+      operationId: partialUpdatePerevalAdded
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this pereval added.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PerevalAdded'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PerevalAdded'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PerevalAdded'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerevalAdded'
+          description: ''
+      tags:
+      - api
+  /api/v1/submitdata/user__email={email}/:
+    get:
+      operationId: retrieveUserPereval
+      description: ''
+      parameters:
+      - name: email
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPereval'
+          description: ''
+      tags:
+      - api
+components:
+  schemas:
+    PerevalAdded:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        status:
+          enum:
+          - new
+          - pending
+          - accepted
+          - rejected
+          type: string
+        beauty_title:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        other_titles:
+          type: string
+          nullable: true
+        connect:
+          type: string
+          nullable: true
+        user:
+          type: object
+          properties:
+            id:
+              type: integer
+              readOnly: true
+            name:
+              type: string
+              maxLength: 255
+            mid_name:
+              type: string
+              nullable: true
+              maxLength: 255
+            last_name:
+              type: string
+              nullable: true
+              maxLength: 255
+            email:
+              type: string
+              maxLength: 255
+            phone:
+              type: string
+              nullable: true
+              maxLength: 15
+          required:
+          - name
+          - email
+        coords:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+            height:
+              type: integer
+          required:
+          - latitude
+          - longitude
+          - height
+        images:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                maxLength: 255
+              img:
+                type: string
+                format: uri
+                pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\\
+                  .(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\\
+                  ]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1-\uFFFF\
+                  0-9])?(?:\\.(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1\
+                  -\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\\
+                  s]*)?\\z"
+            required:
+            - title
+            - img
+        winter:
+          type: string
+          nullable: true
+          maxLength: 5
+        spring:
+          type: string
+          nullable: true
+          maxLength: 5
+        summer:
+          type: string
+          nullable: true
+          maxLength: 5
+        autumn:
+          type: string
+          nullable: true
+          maxLength: 5
+      required:
+      - user
+      - coords
+      - images
+#    UserPereval:
+#      type: object
+#      properties:
+#        id:
+#          type: integer
+#          readOnly: true
+#        status:
+#          enum:
+#          - new
+#          - pending
+#          - accepted
+#          - rejected
+#          type: string
+#        beauty_title:
+#          type: string
+#          nullable: true
+#        title:
+#          type: string
+#          nullable: true
+#        other_titles:
+#          type: string
+#          nullable: true
+#        connect:
+#          type: string
+#          nullable: true
+#        user:
+#          type: object
+#          properties:
+#            id:
+#              type: integer
+#              readOnly: true
+#            name:
+#              type: string
+#              maxLength: 255
+#            mid_name:
+#              type: string
+#              nullable: true
+#              maxLength: 255
+#            last_name:
+#              type: string
+#              nullable: true
+#              maxLength: 255
+#            email:
+#              type: string
+#              maxLength: 255
+#            phone:
+#              type: string
+#              nullable: true
+#              maxLength: 15
+#          required:
+#          - name
+#          - email
+#        coords:
+#          type: object
+#          properties:
+#            latitude:
+#              type: number
+#            longitude:
+#              type: number
+#            height:
+#              type: integer
+#          required:
+#          - latitude
+#          - longitude
+#          - height
+#        images:
+#          type: array
+#          items:
+#            type: object
+#            properties:
+#              title:
+#                type: string
+#                maxLength: 255
+#              img:
+#                type: string
+#                format: uri
+#                pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\\
+#                  .(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\\
+#                  ]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1-\uFFFF\
+#                  0-9])?(?:\\.(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1\
+#                  -\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\\
+#                  s]*)?\\z"
+#            required:
+#            - title
+#            - img
+#        winter:
+#          type: string
+#          nullable: true
+#          maxLength: 5
+#        spring:
+#          type: string
+#          nullable: true
+#          maxLength: 5
+#        summer:
+#          type: string
+#          nullable: true
+#          maxLength: 5
+#        autumn:
+#          type: string
+#          nullable: true
+#          maxLength: 5
+#      required:
+#      - user
+#      - coords
+#      - images
