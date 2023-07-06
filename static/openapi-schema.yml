@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  title: 'Pereval API'
+  title: 'API for FSTR "Pereval" application'
   version: '1.0'
 paths:
   /api/v1/submitdata/:
