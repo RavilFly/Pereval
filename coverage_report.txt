@@ -1,0 +1,30 @@
+(fvenv) E:\python_work\fstr\fstr>coverage report 
+Name                                                                                      Stmts   Miss  Cover
+-------------------------------------------------------------------------------------------------------------
+fstr\__init__.py                                                                              0      0   100%  
+fstr\asgi.py                                                                                  4      4     0%  
+fstr\settings.py                                                                             22      0   100%  
+fstr\urls.py                                                                                  3      0   100%  
+fstr\wsgi.py                                                                                  4      4     0%  
+manage.py                                                                                    12      2    83%  
+pereval\__init__.py                                                                           0      0   100%  
+pereval\admin.py                                                                              1      0   100%  
+pereval\apps.py                                                                               4      0   100%  
+pereval\migrations\0001_initial.py                                                            6      0   100%  
+pereval\migrations\0002_alter_perevaladded_coords.py                                          5      0   100%  
+pereval\migrations\0003_images_pereval_images_title_alter_images_img.py                       5      0   100%  
+pereval\migrations\0004_remove_perevaladded_raw_data_and_more.py                              5      0   100%  
+pereval\migrations\0005_delete_perevalimages.py                                               4      0   100%  
+pereval\migrations\0006_perevaladded_user.py                                                  5      0   100%  
+pereval\migrations\0007_alter_users_email.py                                                  4      0   100%  
+pereval\migrations\0008_alter_perevaladded_autumn_alter_perevaladded_spring_and_more.py       4      0   100%  
+pereval\migrations\__init__.py                                                                0      0   100%  
+pereval\models.py                                                                            50      1    98%  
+pereval\serializers.py                                                                       53     21    60%  
+pereval\tests.py                                                                             16      0   100%  
+pereval\urls.py                                                                               4      0   100%  
+pereval\views.py                                                                             41     21    49%  
+-------------------------------------------------------------------------------------------------------------  
+TOTAL                                                                                       252     53    79%  
+
+
