@@ -1,7 +1,7 @@
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-from .models import PerevalAdded, Coords, Users, Images
+from .models import Coords, Users, Images
 
 class PerevalAddedTests(APITestCase):
     def setUp(self):
